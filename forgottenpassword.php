@@ -17,14 +17,14 @@ $message = "Enter your email address to recieve a reset code";
     <title>forgotten password | Digipharm</title>
 
       <?php
-        if(isset($_GET['submit'])){
+        if(isset($_POST['submit'])){
             include './connection.php';
-            $email = $_GET['email'];
+            $email = $_POST['email'];
             $code = rand(1000, 9999);
-            
             $_SESSION['code'] = $code;
-            echo $_SESSION['code'];
-        
+            $_SESSION['email'] = $email;
+
+            
             // check email validity 
         
             $SELECT = "SELECT *FROM users where email = '$email'";
@@ -92,10 +92,12 @@ $message = "Enter your email address to recieve a reset code";
 
         if(isset($_POST['verify'])){
             
-            $realCode = $_SESSION['code'];
-            $code = $_POST['code'];
+            
+            $code2 = $_POST['code'];
+            $code = $_SESSION['code'];
+            echo "code=".$code;
 
-            if($code === $realCode){
+            if($code2 == $code){
                 $message = "Code has been verified";
                 header('refresh:3;url=newpassword.php');
             }
@@ -123,7 +125,7 @@ $message = "Enter your email address to recieve a reset code";
 
     <div class="signup">
         <p><?php echo $message ?></p>
-        <form action="#" method="get">
+        <form action="#" method="POST">
              <div class="inputs">
        
              <input type="email" name="email" placeholder="Email" required id="code2">
@@ -132,7 +134,7 @@ $message = "Enter your email address to recieve a reset code";
              <div class="button"><button type="submit" name="submit" id="code2">Send Code</button><div>
 
         </form>
-        <form method="post" action="#">
+        <form method="POST" action="#">
 
              <input type="number" name="code" placeholder="Enter code" required id="code">
        

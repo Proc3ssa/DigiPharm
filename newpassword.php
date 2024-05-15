@@ -1,3 +1,40 @@
+<?php
+session_start();
+if(!isset($_SESSION['email'])){
+    header("location:forgottenpassword.php");
+}
+$email = $_SESSION['email'];
+$message = "Enter new password";
+
+
+if(isset($_POST['set'])){
+    include './connection.php';
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
+
+    if($password1 != $password2){
+        $message = "<p style='color:red'>Password mismatch</p>";
+    }
+    else{
+         $UPDATE = "UPDATE users SET password = $password1 WHERE email = '$email'";
+
+         if(mysqli_query($connection, $UPDATE)){
+            $message = "<p style='color:green'>Password has been set successfully <a href='signin.php'>login</a></p>
+            <style>
+            .signup{display:none;}
+            </style>
+            
+            ";
+            
+
+            
+         }
+    }
+
+   
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +52,7 @@
     <p>Resset password</p>
 
     <div class="message">
-        <p>new password set <a href="signin.php">login</a></p>
+        <p><?php echo $message ?></a></p>
     </div>
 
     <div class="signup">
@@ -27,7 +64,12 @@
         
             </div>
 
-            <div class="button"><button type="submit">set password</button></div>
+            <div class="button"><button type="submit" name="set">set password</button></div>
+
+            <?php
+
+            
+            ?>
             
            
         

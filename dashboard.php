@@ -70,7 +70,7 @@ if(!isset($_SESSION['user'])){
         <hr/>
 
         <div class="botom">
-            <p><b>Date: <span class="sdd">'.$res['date'].'<span> <span class="status">'.$res['status'].'<span></b></p>
+            <p><b>Date: <span class="sdd">'.$res['date'].'</span> <span class="status">'.$res['status'].'<span></b></p>
 
             <p style="margin-top:-17px"><b>Time: <span class="st">'.$res['time'].'</span> 
             <span class="cancel"><a href="cancel.php?id='.$res['reminder_id'].'">Cancel</a></span> 
