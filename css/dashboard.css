@@ -1,0 +1,117 @@
+body{
+    background-color: #EBF1F4;
+    margin: 0;
+    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+nav {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #EBF1F4;
+    width:100%;
+    position: fixed;
+    top:0;
+    box-shadow: 0px 3px 5px rgb(143, 143, 143);
+    
+  }
+  nav a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: black;
+  }
+  #logo img{
+    width:60px;
+  }
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+  }
+  ul a {
+    padding: 0.5em;
+  }
+.logo{
+    margin: 20px auto;
+    width: fit-content;
+    
+}
+
+.logo img{
+    width: 120px;
+}
+
+
+
+.signup{
+    
+    width:90%;
+    margin: 10px auto;
+    /* height:500px; */
+    /* border: 1px solid green; */
+    padding-bottom: 25px;
+
+}
+
+.reminder{
+    font-family: 'lemonada';
+    float: left;
+    width:335px;
+    height: 150px;
+    border-radius: 12px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 5px;
+    box-shadow: 0px 3px 5px rgb(143, 143, 143);
+}
+.top{
+   lil:#074102;
+}
+#medname{
+    
+    font-size: 25px;
+}
+#dossage{
+    margin-left: 30px;
+    color:#17735D;
+}
+.sd{
+    color: #083C61;
+}
+hr{
+    width:90%;
+}
+.bottom p{
+    font-size: larger;
+}
+.sdd{
+    font-size: larger;
+    color: #EF229D;
+}
+.status{
+    margin-left: 70px;
+    color:#17735D;
+    font-size: larger;
+}
+.st{
+    color: #EF8022;
+}
+.cancel{
+    margin-left: 60px;
+}
+.edit{
+    margin-left: 30px;
+    color:black;
+
+}
+a{
+    text-decoration: none;
+}
+
+
