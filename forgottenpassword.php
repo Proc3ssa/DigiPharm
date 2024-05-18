@@ -95,7 +95,7 @@ $message = "Enter your email address to recieve a reset code";
             
             $code2 = $_POST['code'];
             $code = $_SESSION['code'];
-            echo "code=".$code;
+            
 
             if($code2 == $code){
                 $message = "Code has been verified";
