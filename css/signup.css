@@ -1,5 +1,5 @@
 body{
-    background-color: #EBF1F4;
+    background-color: #edf3f6;
     
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -19,6 +19,7 @@ p{
 
 .signup{
     border: 1px solid #909DA6;
+    background-color: #f4f6f8;
     width:350px;
     margin: 10px auto;
     /* height:500px; */
