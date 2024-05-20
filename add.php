@@ -25,6 +25,8 @@ if(isset($_POST['add'])){
   $time = $_POST['time'];
   $notificationtype = $_POST['notificationtype'];
   $id = rand(10000, 90000);
+  $sendAtTimestamp = strtotime("$date $time UTC");
+
 
   $INSERT = "INSERT INTO reminders values($id, '$name', '$dossage', '$date', '$time', $user, '$notificationtype', 'Pending', '$metric')";
 
@@ -64,9 +66,14 @@ if(isset($_POST['add'])){
       sendEmail();
       </script>
       
-      ' 
+      ' ;
 
-      ;
+      // later alert 
+
+      require_once './test-email.php';
+      
+
+
   }
   else{
     $message = "<p style='red:green'>Something went wrong, try again after some time</p>";
