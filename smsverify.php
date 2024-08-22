@@ -13,28 +13,55 @@ $API_KEY = 'dWd6Vk9xSXNkVUpTUElpR2JweUQ';
 
 $SMS = "Your verification code is $id. Enter it to activate your account.";
 
+function replaceSpaces($text) {
+  
+    return str_replace(' ', '%20', $text);
+  }
+  
+
 function sms(){
 
     $id = $_SESSION['userid'];
 $email = $_SESSION['email'];
 $customer = $_SESSION['phone'];
 $SMS = "Your verification code is $id. Enter it to activate your account.";
+
+
+$url = replaceSpaces('https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$customer.'&from=DigiPahrm&sms='.$SMS.'');
+
+
+$ch = curl_init();
+
+  curl_setopt($ch, CURLOPT_URL, $url);
+
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+  $response = curl_exec($ch);
+
+  if ($response === false) {
+      echo 'Error: ' . curl_error($ch);
+  }
+
+  curl_close($ch);
+
+  echo $response;
+
     
 // SEND SMS
-$curl = curl_init();
-curl_setopt_array($curl, array(
-CURLOPT_URL => 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$customer.'&from=DigiPahrm&sms='.$SMS.'',
-CURLOPT_RETURNTRANSFER => true,
-CURLOPT_ENCODING => '',
-CURLOPT_MAXREDIRS => 10,
-CURLOPT_TIMEOUT => 10,
-CURLOPT_FOLLOWLOCATION => true,
-CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-CURLOPT_CUSTOMREQUEST => 'GET', ));
-$response = curl_exec($curl);
-curl_close($curl);
+// $curl = curl_init();
+// curl_setopt_array($curl, array(
+// CURLOPT_URL => 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$customer.'&from=DigiPahrm&sms='.$SMS.'',
+// CURLOPT_RETURNTRANSFER => true,
+// CURLOPT_ENCODING => '',
+// CURLOPT_MAXREDIRS => 10,
+// CURLOPT_TIMEOUT => 10,
+// CURLOPT_FOLLOWLOCATION => true,
+// CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+// CURLOPT_CUSTOMREQUEST => 'GET', ));
+// $response = curl_exec($curl);
+// curl_close($curl);
 
-echo $response;
+// echo $response;
 
 
 

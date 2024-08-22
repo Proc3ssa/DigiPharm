@@ -6,14 +6,112 @@ if(!isset($_SESSION['user'])){
 else{
   $user = $_SESSION['user'];
   include './connection.php';
-  $getEmail = "SELECT email FROM users where id = $user";
+  $getEmail = "SELECT email, phone FROM users where id = $user";
   $emaiQuery = mysqli_query($connection, $getEmail);
   $fetch = mysqli_fetch_assoc($emaiQuery);
   $email = $fetch['email'];
+  $phone = $fetch['phone'];
+  
+}
+function replaceSpaces($text) {
+  
+  return str_replace(' ', '%20', $text);
+}
+
+function new_sms($SMS, $phone){
+ $url = 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$phone.'&from=DigiPharm&sms='.$SMS.'';
+
+ $formatedUrl = replaceSpaces($url);
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $formatedUrl);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $response = curl_exec($ch);
+
+  if ($response === false) {
+        echo 'Error: ' . curl_error($ch);
+        // echo '<p></p>'.$formatedUrl;
+    }
+  curl_close($ch);
+
+  
+    // echo $response;
+
+      // $curl = curl_init();
+      // curl_setopt_array($curl, array(
+      // CURLOPT_URL => 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$phone.'&from=DigiPharm&sms='.$SMS.'',
+      // CURLOPT_RETURNTRANSFER => true,
+      // CURLOPT_ENCODING => '',
+      // CURLOPT_MAXREDIRS => 10,
+      // CURLOPT_TIMEOUT => 10,
+      // CURLOPT_FOLLOWLOCATION => true,
+      // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      // CURLOPT_CUSTOMREQUEST => 'GET', ));
+      // $response = curl_exec($curl);
+      // curl_close($curl);
+
+      //  echo $response.'<p></p>';
+      // echo $formatedUrl;
+
+}
+
+function scheduled_sms($sms,$phone,$datetime){
+
+
+  $url = replaceSpaces("https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to=$phone&from=DigiPharm&sms=$sms&schedule=$datetime");
+
+
+  $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+
+    if ($response === false) {
+        // echo 'Error: ' . curl_error($ch);
+    }
+
+    curl_close($ch);
+
+    // echo $response;
+
+    // $curl = curl_init();
+    // curl_setopt_array($curl, array(
+    // CURLOPT_URL => "https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ=&to=$phone&from=DigiPharm&sms=$sms&schedule=$datetime",
+    // CURLOPT_RETURNTRANSFER => true,
+    // CURLOPT_ENCODING => '',
+    // CURLOPT_MAXREDIRS => 10,
+    // CURLOPT_TIMEOUT => 10,
+    // CURLOPT_FOLLOWLOCATION => true,
+    // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    // CURLOPT_CUSTOMREQUEST => 'GET',
+    // ));
+    // $response = curl_exec($curl);
+    // curl_close($curl);
+    // echo $response;
+
+    // echo "https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to=$phone&from=DigiPharm&sms=$sms&schedule=$datetime";
+}
+
+function formatDateTime($dateTime) {
+ 
+  $timestamp = strtotime($dateTime);
+  
+  
+  $formattedDate = date('d-m-Y', $timestamp);
+  
+  
+  $formattedTime = date('h:iA', $timestamp);
+  
+  
+  return $formattedDate . ' ' . $formattedTime;
 }
 
 
-$message = "";
+
+
 
 if(isset($_POST['add'])){
   include './connection.php';
@@ -23,9 +121,12 @@ if(isset($_POST['add'])){
   $dossage2 = $dossage.$metric;
   $date = $_POST['date'];
   $time = $_POST['time'];
-  $notificationtype = $_POST['notificationtype'];
+  
   $id = rand(10000, 90000);
   $sendAtTimestamp = strtotime("$date $time UTC");
+  $SMS = "You have set a reminder for medicince intake. Medicine: $name. Dossage: $dossage2. Day : $date. Time: $time. You will be reminded again on $date";
+
+  $Ssms = "You set a reminder for medicince intake at this time.  Medicine: $name. Dossage: $dossage2.Get well soon. DigiPharm";
 
 
   $INSERT = "INSERT INTO reminders values($id, '$name', '$dossage', '$date', '$time', $user, '$notificationtype', 'Pending', '$metric')";
@@ -67,10 +168,14 @@ if(isset($_POST['add'])){
       </script>
       
       ' ;
+     
 
-      // later alert 
-
-      // require_once './test-email.php';
+      $inputDateTime = $date.$time;
+      $converted = formatDateTime($inputDateTime);
+      new_sms($SMS, $phone);
+      scheduled_sms($Ssms,$phone,$converted);
+      
+      
       
 
 
@@ -136,11 +241,7 @@ if(isset($_POST['add'])){
         <input type="date" name="date" placeholder="Date" required id="date" min="<?php echo date('Y-m-d')?>">
         <input type="time" name="time" placeholder="time" required>
 
-        <div class="notified">
-            <p>Get notified by</p>
-            <input type="radio" id="email" value="email" name="notificationtype" required> <label for="email">Email</label>
-            <input type="radio" id="sms"  value="sms" name="notificationtype" required> <label for="sms">SMS</label>
-        </div>
+      
        
             </div>
 
