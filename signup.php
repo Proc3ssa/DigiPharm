@@ -26,7 +26,8 @@ if(isset($_POST['create'])){
             session_start();
             $_SESSION['userid'] = $id;
             $_SESSION['email'] = $email;
-            header("location:emailverify.php");
+            $_SESSION['phone'] = $phone;
+            header("location:smsverify.php");
         }
         else{
             echo '<script>alert("Something went wrong, try again after sometime")</script>';

@@ -2,21 +2,28 @@
 session_start();
 $id = $_SESSION['userid'];
 $email = $_SESSION['email'];
+$customer = $_SESSION['phone'];
+
 
 
 $message = "You have successfully created an
 account, check your phone for SMS verifcation code.";
 $API_KEY = 'dWd6Vk9xSXNkVUpTUElpR2JweUQ';
 
-$code = rand(99999,100000);
-$SMS = "Your verification code is $code. Enter it to activate your account.";
+
+$SMS = "Your verification code is $id. Enter it to activate your account.";
 
 function sms(){
+
+    $id = $_SESSION['userid'];
+$email = $_SESSION['email'];
+$customer = $_SESSION['phone'];
+$SMS = "Your verification code is $id. Enter it to activate your account.";
     
 // SEND SMS
 $curl = curl_init();
 curl_setopt_array($curl, array(
-CURLOPT_URL => 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=cE9QRUkdjsjdfjkdsj9kdiieieififiw=&to=233544919953&from=Arkesel&sms=Hello%20world.%20Spreading%20peace%20and%20joy%20only.%20Remeber%20to%20put%20on%20your%20face%20mask.%20Stay%20safe!',
+CURLOPT_URL => 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$customer.'&from=DigiPahrm&sms='.$SMS.'',
 CURLOPT_RETURNTRANSFER => true,
 CURLOPT_ENCODING => '',
 CURLOPT_MAXREDIRS => 10,
@@ -26,9 +33,28 @@ CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 CURLOPT_CUSTOMREQUEST => 'GET', ));
 $response = curl_exec($curl);
 curl_close($curl);
+
 echo $response;
 
+
+
 }
+
+sms();
+
+if(isset($_POST['submit3'])){
+
+    $code = $_POST['code'];
+
+   if($code == $id){
+    header("location: ./activation/index.php?id=$id&email=&email");
+   }
+
+   else{
+    $message = "Incorrect code";
+    sms($SMS, $customer);
+   }
+ }
 
 
 
@@ -57,13 +83,19 @@ echo $response;
         <form action="#" method="POST">
              <div class="inputs">
        
-             <input type="email" name="email" placeholder="enter code" required id="code2">
-            <div class="button"><button type="submit" name="submit" id="code2">Submit</button><div>
+             <input type="number" name="code" placeholder="enter code" required id="code2">
+            <div class="button"><button type="submit" name="submit3" id="code2">Submit</button><div>
 
         </form>
         
 
     </div>
+
+
+    <?php  
+    
+    
+    ?>
 
 </body>
 </html>
