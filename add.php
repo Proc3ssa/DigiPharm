@@ -70,7 +70,7 @@ if(isset($_POST['add'])){
 
       // later alert 
 
-      require_once './test-email.php';
+      // require_once './test-email.php';
       
 
 

@@ -17,6 +17,10 @@ p{
     font-size: 20px;
 }
 
+#smscode{
+ width: 300px;
+ margin: auto;
+}
 .signup{
     border: 1px solid #909DA6;
     background-color: #f4f6f8;

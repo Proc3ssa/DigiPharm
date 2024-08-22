@@ -2,40 +2,35 @@
 session_start();
 $id = $_SESSION['userid'];
 $email = $_SESSION['email'];
-$link = $_SERVER['SERVER_NAME']."/activation/index.php?id=".$id."&email=".$email;
-
-echo '
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-// Initialize EmailJS with your user ID
 
 
-emailjs.init("vqYyv2J3u7inIVDaR");
+$message = "You have successfully created an
+account, check your phone for SMS verifcation code.";
+$API_KEY = 'dWd6Vk9xSXNkVUpTUElpR2JweUQ';
 
-// Function to send email
-function sendEmail() {
-    // Prepare email parameters
-    var params = {
-        activation_link: "'.$link.'",
-        new_user: "'.$email.'"
-        
-    };
+$code = rand(99999,100000);
+$SMS = "Your verification code is $code. Enter it to activate your account.";
 
-    // Send email
-    emailjs.send("service_jgap5ij", "template_he4u3hn", params)
-        .then(function(response) {
-            console.log("Email sent successfully:", response);
-        }, function(error) {
-            console.error("Email sending failed:", error);
-        });
+function sms(){
+    
+// SEND SMS
+$curl = curl_init();
+curl_setopt_array($curl, array(
+CURLOPT_URL => 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=cE9QRUkdjsjdfjkdsj9kdiieieififiw=&to=233544919953&from=Arkesel&sms=Hello%20world.%20Spreading%20peace%20and%20joy%20only.%20Remeber%20to%20put%20on%20your%20face%20mask.%20Stay%20safe!',
+CURLOPT_RETURNTRANSFER => true,
+CURLOPT_ENCODING => '',
+CURLOPT_MAXREDIRS => 10,
+CURLOPT_TIMEOUT => 10,
+CURLOPT_FOLLOWLOCATION => true,
+CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+CURLOPT_CUSTOMREQUEST => 'GET', ));
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+
 }
 
-// Send the email immediately when the script is loaded
-sendEmail();
-</script>
 
-'
-;
 
 ?>
 
@@ -50,23 +45,25 @@ sendEmail();
     <title>verify | Digipharm</title>
 </head>
 <body>
-    <div class="logo">
+<div class="logo">
         <img src="./images/logo-colored.png">
     </div>
+    <p>Account Activation</p>
 
-    <div class="email-image">
-        <img src="./images/email.png">
+    
+
+    <div class="signup">
+        <p><?php echo $message ?></p>
+        <form action="#" method="POST">
+             <div class="inputs">
+       
+             <input type="email" name="email" placeholder="enter code" required id="code2">
+            <div class="button"><button type="submit" name="submit" id="code2">Submit</button><div>
+
+        </form>
+        
+
     </div>
 
-    <p> You have successfully created an
-account, open your email to verify 
-your account. </p>
-    
-
-    
-
-   
-
-    
 </body>
 </html>
