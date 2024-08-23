@@ -74,7 +74,7 @@ if(isset($_POST['submit3'])){
     $code = $_POST['code'];
 
    if($code == $id){
-    header("location: ./activation/index.php?id=$id&email=&email");
+    header("location: ./activation/index.php?id=$id&email=$email");
    }
 
    else{

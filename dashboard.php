@@ -11,6 +11,32 @@ if(!isset($_SESSION['user'])){
   $SELECT = "SELECT *FROM reminders where user = $user";
   $query = mysqli_query($connection, $SELECT);
 
+  function checkFutureDate($providedDate) {
+    $currentDate = date('Y-m-d H:i:s');
+     $currentTimestamp = strtotime($currentDate);
+     $providedTimestamp = strtotime($providedDate);
+ 
+     
+     if ($providedTimestamp > $currentTimestamp) {
+          
+       return ['editStatus' => "Edit",
+       'cancelStatus' => "Cancel",
+       'status' => "Pending"];
+
+        
+         
+     } else {
+
+      return ['editStatus' => "",
+      'cancelStatus' => "",
+      'status' => "Past"];
+     }
+ }
+
+  
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +83,9 @@ if(!isset($_SESSION['user'])){
      <?php
 
      while($res = mysqli_fetch_assoc($query)){
+
+      $dateTime = $res['date'].' '.$res['time'];
+      
         $color1 = rand(10, 99);
         $color2 = rand(10, 99);
         $color3 = rand(10, 99);
@@ -65,17 +94,17 @@ if(!isset($_SESSION['user'])){
 
     <div class="reminder" style="background-color:'.$color.';">
         <div class="top">
-            <b id="medname">'.$res['medicine'].'</b> <b id="dossage">Dossage:<span class="sd">'.$res['dossage'].'</span></b>
+            <b id="medname">'.$res['medicine'].'</b> <b id="dossage">Dossage:<span class="sd">'.$res['dossage'].$res['metric'].'</span></b>
         </div>
         <hr/>
 
         <div class="botom">
-            <p><b>Date: <span class="sdd">'.$res['date'].'</span> <span class="status">'.$res['status'].'<span></b></p>
+            <p><b>Date: <span class="sdd">'.$res['date'].'</span> <span class="status">'.checkFutureDate($dateTime)['status'].'<span></b></p>
 
             <p style="margin-top:-17px"><b>Time: <span class="st">'.$res['time'].'</span> 
-            <span class="cancel"><a href="cancel.php?id='.$res['reminder_id'].'">Cancel</a></span> 
+            <span class="cancel"><a href="cancel.php?id='.$res['reminder_id'].'">'.checkFutureDate($dateTime)['cancelStatus'].'</a></span> 
             
-            <span class="edit"><a href="edit.php?id='.$res['reminder_id'].'">Edit</a></span></b></p>
+            <span class="edit"><a href="edit.php?id='.$res['reminder_id'].'">'.checkFutureDate($dateTime)['editStatus'].'</a></span></b></p>
 
            
         </div>

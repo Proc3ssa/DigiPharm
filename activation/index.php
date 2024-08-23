@@ -4,7 +4,7 @@ if(isset($_GET['id']) and isset($_GET['email'])){
 $id = $_GET['id'];
 $email = $_GET['email'];
 
-$UPDATE = "UPDATE users set status = 'verified' where id= $id and email = '$email'";
+$UPDATE = "UPDATE users set status = 'verified' where id = $id and email = '$email'";
 
     if(mysqli_query($connection, $UPDATE)){
         $message = "Your account has been verified successfully <a href='../signin.php'>login</a>";

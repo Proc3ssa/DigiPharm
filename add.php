@@ -126,7 +126,7 @@ if(isset($_POST['add'])){
   $sendAtTimestamp = strtotime("$date $time UTC");
   $SMS = "You have set a reminder for medicince intake. Medicine: $name. Dossage: $dossage2. Day : $date. Time: $time. You will be reminded again on $date";
 
-  $Ssms = "You set a reminder for medicince intake at this time.  Medicine: $name. Dossage: $dossage2.Get well soon. DigiPharm";
+  $Ssms = "You set a reminder for medicince intake at this time.  Medicine: $name. Dossage: $dossage2. Get well soon. DigiPharm";
 
 
   $INSERT = "INSERT INTO reminders values($id, '$name', '$dossage', '$date', '$time', $user, '$notificationtype', 'Pending', '$metric')";
