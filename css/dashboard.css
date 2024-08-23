@@ -63,7 +63,8 @@ nav {
     font-family: 'lemonada';
     float: left;
     width:335px;
-    height: 150px;
+    min-height: 150px;
+    height: fit-content;
     border-radius: 12px;
     margin-right: 20px;
     margin-bottom: 20px;

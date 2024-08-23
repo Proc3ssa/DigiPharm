@@ -85,6 +85,7 @@ if(!isset($_SESSION['user'])){
      while($res = mysqli_fetch_assoc($query)){
 
       $dateTime = $res['date'].' '.$res['time'];
+      $medicine = $res['medicine'];
       
         $color1 = rand(10, 99);
         $color2 = rand(10, 99);
@@ -94,7 +95,7 @@ if(!isset($_SESSION['user'])){
 
     <div class="reminder" style="background-color:'.$color.';">
         <div class="top">
-            <b id="medname">'.$res['medicine'].'</b> <b id="dossage">Dossage:<span class="sd">'.$res['dossage'].$res['metric'].'</span></b>
+            <b id="medname">'.(strlen($medicine) <13 ? $medicine : substr($medicine, 0, 12) . '...').'</b> <b id="dossage">Dossage:<span class="sd">'.$res['dossage'].$res['metric'].'</span></b>
         </div>
         <hr/>
 
