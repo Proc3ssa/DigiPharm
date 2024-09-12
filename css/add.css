@@ -1,6 +1,6 @@
 body{
-    background-color: #EBF1F4;
-    
+  background: -webkit-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../images/signback.png);
+    margin: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 nav {
@@ -8,7 +8,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: transparent;
+    background-color: aliceblue;
     padding: 1em;
   }
   nav a {
@@ -47,7 +47,7 @@ nav {
     border: 1px solid #909DA6;
     width:350px;
     margin: 10px auto;
-    /* height:500px; */
+    background-color: aliceblue;
     border-radius: 15px;
     padding-bottom: 25px;
 

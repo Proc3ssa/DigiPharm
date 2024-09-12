@@ -50,7 +50,7 @@ if(isset($_POST['login'])){
     <div class="logo">
         <img src="./images/logo-colored.png">
     </div>
-    <p>Sign up</p>
+    <p>Sign in</p>
 
     <div class="signup">
         <div class="err">

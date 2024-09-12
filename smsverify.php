@@ -28,7 +28,7 @@ function sms(){
     $SMS = "Your verification code is $id. Enter it to activate your account.";
 
 
-$url = replaceSpaces('https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$customer.'&from=DigiPahrm&sms='.$SMS.'');
+$url = replaceSpaces('https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$customer.'&from=MedRemind&sms='.$SMS.'');
 
 
 $ch = curl_init();

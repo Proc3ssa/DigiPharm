@@ -1,6 +1,6 @@
 body{
-    background-color: #edf3f6;
-    
+    background: -webkit-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../images/signback.png);
+    color:white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .logo{
@@ -26,10 +26,14 @@ p{
     background-color: #f4f6f8;
     width:350px;
     margin: 10px auto;
-    /* height:500px; */
+    color:black;
     border-radius: 15px;
     padding-bottom: 25px;
 
+}
+
+#other {
+    display:none;
 }
 
 fieldset{

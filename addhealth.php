@@ -102,7 +102,7 @@ else{
         
       </ul>
     </nav>
-    <p style="color:#083C61; text-align:center">Add a new <b><?php  echo $healthtype ?></b></p>
+    <p style="color:white; text-align:center">Add a new <b><?php  echo $healthtype ?></b></p>
 
     <div class="signup">
       <div class="err">

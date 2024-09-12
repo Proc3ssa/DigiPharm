@@ -20,7 +20,7 @@ function replaceSpaces($text) {
 }
 
 function new_sms($SMS, $phone){
- $url = 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$phone.'&from=DigiPharm&sms='.$SMS.'';
+ $url = 'https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to='.$phone.'&from=MedRemind&sms='.$SMS.'';
 
  $formatedUrl = replaceSpaces($url);
 
@@ -59,7 +59,7 @@ function new_sms($SMS, $phone){
 function scheduled_sms($sms,$phone,$datetime){
 
 
-  $url = replaceSpaces("https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to=$phone&from=DigiPharm&sms=$sms&schedule=$datetime");
+  $url = replaceSpaces("https://sms.arkesel.com/sms/api?action=send-sms&api_key=dWd6Vk9xSXNkVUpTUElpR2JweUQ&to=$phone&from=MedRemind&sms=$sms&schedule=$datetime");
 
 
   $ch = curl_init();
@@ -230,7 +230,7 @@ if(isset($_POST['add'])){
         
       </ul>
     </nav>
-    <p style="color:#083C61; text-align:left">Add a new reminder</p>
+    <p style="color:white; text-align:left">Add a new reminder</p>
 
     <div class="signup">
       <div class="err">

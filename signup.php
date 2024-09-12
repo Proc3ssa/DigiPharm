@@ -110,6 +110,11 @@ if(isset($_POST['create'])){
 
         document.getElementById('nothd').style.display = "none";
     }
+
+    function show(){
+        document.getElementById('other').style.display ="block";
+    }
+
 </script>
 
 <style>
@@ -233,15 +238,15 @@ if(isset($_POST['create'])){
     </div>
 </div>
 
-<input type="text" id="selected-options" name="medications" placeholder="Selected options will appear here...">
+<input type="text" id="selected-options" name="medications" placeholder="Selected options will appear here..."> <button type="button" onclick="show()">+</button>
 
 
            <!--  -->
 
             <p></p>
-           <label for="other">Other</label>
            
-           <input type="text" name="other" id='other' placeholder="other medicine" value="">
+           
+           <input type="text" name="other" id='other' placeholder="Enter other medicine" value="">
         
             
         </fieldset>

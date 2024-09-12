@@ -156,7 +156,7 @@ session_start();
     </button></a>
     </fieldset>
 
-<p style="color:#083C61; text-align:left; margin-top:100px;">Reminders</p>
+<p style="color:white; text-align:left; margin-top:100px;">Reminders</p>
 
      <?php
 
@@ -168,7 +168,7 @@ session_start();
         $color1 = rand(10, 99);
         $color2 = rand(10, 99);
         $color3 = rand(10, 99);
-        $color = "rgba(".$color1.",".$color2.",".$color3.",0.5)";
+        $color = "rgba(".$color1.",".$color2.",".$color3.",0.9)";
         echo '
 
     <div class="reminder" style="background-color:'.$color.';">

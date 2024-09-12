@@ -1,5 +1,5 @@
 body{
-    background-color: #EBF1F4;
+    background: -webkit-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../images/signback.png);
     margin: 0;
     
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -9,7 +9,8 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #EBF1F4;
+     background-color: aliceblue;
+     
     width:100%;
     position: fixed;
     top:0;
