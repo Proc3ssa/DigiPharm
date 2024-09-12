@@ -38,6 +38,10 @@ if(!isset($_SESSION['user'])){
 
     }
 
+    $medsSelect = "SELECT medicines from users where id = $user";
+    $medQury = mysqli_query($connection, $medsSelect);
+    $medRes = mysqli_fetch_assoc($medQury);
+    $medicines = $medRes['medicines'];
     
   
 ?>
@@ -82,7 +86,20 @@ if(!isset($_SESSION['user'])){
       <div class="err"><?php echo $message ?></div>
         <form action="#" method="post">
              <div class="inputs">
-        <input type="text" name="medicine" placeholder="medicne" required value="<?php echo $res['medicine'] ?>">
+              <p>Medicines</p>
+             <?php 
+            $medarr = explode(',', $medicines);
+            
+            echo '<input type="radio" id="'.$drug.'" name="medicine"  value="'.$res['medicine'].'" checked required> <label for="'.$drug.'">'.$res['medicine'].'</label>';
+            
+
+            foreach($medarr as $drug){
+              echo '
+              <input type="radio" id="'.$drug.'" name="medicine"  value="'.$drug.'" required> <label for="'.$drug.'">'.$drug.'</label>';
+            }
+            ?>
+
+      <p>Dossage</p>
         <input type="number" name="dossage" placeholder="dossage" required id="don" value="<?php echo $res['dossage'] ?>">
          <select required id="dossage" name="metric">
           <option value="<?php echo $res['metric'] ?>">mg</option>
@@ -94,14 +111,17 @@ if(!isset($_SESSION['user'])){
             <option value="mol">mol</option>
             <option value="mmol">mmol</option>
         </select>
+
+        <p>Date</p>
         <input type="date" name="date" placeholder="Date" required value="<?php echo $res['date'] ?>">
+        <p>Time</p>
         <input type="time" name="time" placeholder="time" required value="<?php echo $res['time'] ?>">
 
-        <div class="notified">
+        <!-- <div class="notified">
             <p>Get notified by</p>
             <input type="radio" id="email" name="notificationtype" requied <?php echo ($res['notificationType'] ==  "email") ? "checked" : ""  ?> value="email"> <label for="email">Email</label>
             <input type="radio" id="sms" name="notificationtype" requied  <?php echo ($res['notificationType'] ==  "sms") ? "checked" : ""  ?> value="sms"> <label for="sms">SMS</label>
-        </div>
+        </div> -->
        
             </div>
 

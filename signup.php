@@ -5,6 +5,7 @@ $message = "";
 if(isset($_POST['create'])){
     include './connection.php';
     $name = $_POST['name'];
+    $country = $_POST['country'];
     $email = $_POST['email'];
     $age = $_POST['age'];
     $password = $_POST['password'];
@@ -191,7 +192,12 @@ if(isset($_POST['create'])){
         <label for="password">Password</label><a class='required'>*</a>
         <p id="passwordMessage" style="color: red; display: none; font-size:15px">Password must be at least 8 characters long.</p>
 
+        
         <input type="password" name="password" id='password' placeholder="Enter password" onchange="validatePassword()" required>
+        
+        <label for="phone">Country</label><a class='required'>*</a>
+        
+        <input type="text" name="country" id='country' placeholder="Enter country" onchange="validatePassword()" required>
 
         <label for="phone">Phone</label><a class='required'>*</a>
         <input type="text" name="phone"  placeholder="+233       0456xxxx" required>
