@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 0);
 session_start();
 if(!isset($_SESSION['user'])){
   header('location:signin.php');
@@ -109,7 +110,10 @@ function formatDateTime($dateTime) {
   return $formattedDate . ' ' . $formattedTime;
 }
 
-
+$medsSelect = "SELECT medicines from users where id = $user";
+$medQury = mysqli_query($connection, $medsSelect);
+$medRes = mysqli_fetch_assoc($medQury);
+$medicines = $medRes['medicines'];
 
 
 
@@ -200,6 +204,13 @@ if(isset($_POST['add'])){
     
     <title>Add | Digipharm</title>
 
+    <script>
+    // Check if the form has been submitted
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
     
 </head>
 <body>
@@ -226,8 +237,20 @@ if(isset($_POST['add'])){
       <p><?php echo $message; ?></p>
       </div>
         <form action="#" method="post">
-             <div class="inputs">
-        <input type="text" name="medicine" placeholder="medicne" required>
+        <div class="inputs">
+          <label for="medicine">Medicine</label><span style="color:red">*</span><p></p>
+
+            <?php 
+            $medarr = explode(',', $medicines);
+
+            foreach($medarr as $drug){
+              echo '
+              <input type="radio" id="'.$drug.'" name="medicine"  value="'.$drug.'" required> <label for="'.$drug.'">'.$drug.'</label>';
+            }
+            ?>
+
+          <p></p>
+
         <input type="number" name="dossage" placeholder="dossage" required id="don">
          <select required id="dossage" name="metric">
             <option value="mg">mg</option>

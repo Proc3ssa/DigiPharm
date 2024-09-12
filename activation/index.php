@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 0);
 if(isset($_GET['id']) and isset($_GET['email'])){
     include '../connection.php';
 $id = $_GET['id'];

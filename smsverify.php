@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 0);
 session_start();
 $id = $_SESSION['userid'];
 $email = $_SESSION['email'];
@@ -44,7 +45,7 @@ $ch = curl_init();
 
   curl_close($ch);
 
-  echo $response;
+//   echo $response;
 
     
 // SEND SMS

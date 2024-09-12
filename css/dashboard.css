@@ -71,6 +71,37 @@ nav {
     padding: 5px;
     box-shadow: 0px 3px 5px rgb(143, 143, 143);
 }
+
+.illness{
+    text-shadow: 0 1px 6px rgb(33, 64, 241);
+    color: white;
+    background-repeat: round;
+    font-family: 'lemonada';
+    float: left;
+    min-width:200px;
+    width: fit-content;
+    min-height: 80px;
+    height: fit-content;
+    border-radius: 12px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 3px 5px rgb(143, 143, 143);
+}
+
+.add{
+    border: none;
+    background-color: #083C61;
+    font-family: 'lemonada';
+    float: left;
+    color: white;
+    width:100px;
+   
+    height: 30px;
+    border-radius: 12px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 3px 5px rgb(143, 143, 143);
+}
 .top{
    lil:#074102;
 }
@@ -113,6 +144,27 @@ hr{
 }
 a{
     text-decoration: none;
+     
+}
+
+.fieldset{
+    margin-top: 150px;
+    border-radius: 10px;
+    background-color: #f3e0e9e7;
+    box-shadow: 0 1px 6px gray;
+    border: none;
+}
+
+.fieldsets{
+    margin-top: 50px;
+    border-radius: 10px;
+    background-color: #e0e6f3e7;
+    box-shadow: 0 1px 6px gray;
+    border: none;
+}
+p button:hover{
+width: 101px;
+height: 31px;
 }
 
 

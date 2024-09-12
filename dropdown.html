@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown with Checkboxes and Textbox</title>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .dropdown-content label {
+            display: block;
+            cursor: pointer;
+        }
+
+        .dropdown-content input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        .dropdown button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        .dropdown button:focus {
+            outline: none;
+        }
+
+        #selected-options {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dropdown">
+    <button type="button" onclick="toggleDropdown()">Select Options</button>
+    <div id="dropdown-content" class="dropdown-content">
+        <label><input type="checkbox" value="Option 1">Option 1</label>
+        <label><input type="checkbox" value="Option 2">Option 2</label>
+        <label><input type="checkbox" value="Option 3">Option 3</label>
+        <label><input type="checkbox" value="Option 4">Option 4</label>
+    </div>
+</div>
+
+<textarea id="selected-options" placeholder="Selected options will appear here..." readonly></textarea>
+
+<script>
+    function toggleDropdown() {
+        document.getElementById("dropdown-content").classList.toggle("show");
+    }
+
+    var checkboxes = document.querySelectorAll('#dropdown-content input[type="checkbox"]');
+    var textbox = document.getElementById('selected-options');
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            var selected = [];
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    selected.push(checkbox.value);
+                }
+            });
+            textbox.value = selected.join(', ');
+        });
+    });
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown button')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

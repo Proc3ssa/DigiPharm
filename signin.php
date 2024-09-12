@@ -22,7 +22,7 @@ if(isset($_POST['login'])){
         header("location:dashboard.php");
         }
         else{
-            $message = "<p style='color:blue'>Your Account has not been verified. Check your email for a verification message.</p>";
+            $message = "<p style='color:blue'>Your Account has not been verified. Check your SMS for a verification code.</p>";
         }
     }
     else{

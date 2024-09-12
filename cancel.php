@@ -1,5 +1,5 @@
 <?php
-
+ini_set('display_errors', 0);
 $id = $_GET['id'];
 $message = "Are you sure you want to cancel this reminder?";
 

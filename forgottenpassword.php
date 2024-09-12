@@ -1,5 +1,5 @@
 <?php
-
+ini_set('display_errors', 0);
 session_start();
 $message = "Enter your email address to recieve a reset code";
 

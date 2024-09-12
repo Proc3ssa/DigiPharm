@@ -1,6 +1,8 @@
 <?php 
+ini_set('display_errors', 0);
 session_start();
-if(!isset($_SESSION['user'])){
+
+  if(!isset($_SESSION['user'])){
     header('location:signin.php');
   }
   else{
@@ -10,6 +12,12 @@ if(!isset($_SESSION['user'])){
   include './connection.php';
   $SELECT = "SELECT *FROM reminders where user = $user";
   $query = mysqli_query($connection, $SELECT);
+
+  $INFOfetch = "SELECT *FROM users where id = '$user'";
+  $infoQuery = mysqli_query($connection, $INFOfetch);
+  $infoRes = mysqli_fetch_assoc($infoQuery);
+
+  
 
   function checkFutureDate($providedDate) {
     $currentDate = date('Y-m-d H:i:s');
@@ -46,15 +54,19 @@ if(!isset($_SESSION['user'])){
     <link href='https://fonts.googleapis.com/css?family=Lemonada' rel='stylesheet'>
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <title>Dashboard | Digipharm</title>
 </head>
 <body>
 <nav>
-      <a href="#home" id="logo"><img src="./images/logo-trans.png"></a>
+
+<a style="margin-left:10px; text-align:center" class='profile' href="profile.php" id="logo"><img src="./images/user.png" /> <p><?php echo $infoRes['name']; ?></p></a>
+
+      <!-- <a href="#home" id="logo"><img src="./images/logo-trans.png"></a> -->
       <input type="checkbox" id="hamburger" />
       <label for="hamburger">
-        <i class="fa-solid fa-bars"></i>
+        <!-- <i class="fa-solid fa-bars"></i> -->
       </label>
       <ul>
         <li>
@@ -78,6 +90,72 @@ if(!isset($_SESSION['user'])){
     
 
     <div class="signup">
+
+    <fieldset class="fieldset">
+      <legend><b>My Health</b></legend>
+      <p>Health Issues</p>
+
+      
+      <?php 
+
+      $illness = $infoRes['healthissues'];
+      $arr = explode(',', $illness);
+
+      foreach($arr as $ill){
+       
+      $color1 = rand(10, 99);
+      $color2 = rand(10, 99);
+      $color3 = rand(10, 99);
+      $color = "rgba(".$color1.",".$color2.",".$color3.",0.9)";
+      echo '
+      <div class="illness" style="background:  -webkit-linear-gradient('.$color.','.$color.'), url(../images/heartbeat.png);background-repeat: round;"> <a style="text-decoration:none; color:white; text-align:right" href="deletestuff.php?type=hi&name='.$ill.'"><i class="fas fa-trash" style="margin-left:auto"></i></a>
+   <h1>'.$ill.'</h1>
+    </div> 
+        
+        ';
+      }
+      
+      
+    ?>
+    <hr>
+    <a href="addhealth.php?type=hs"><button class="add">
+      Add +
+    </button></a>
+    </fieldset>
+
+
+    <fieldset class="fieldsets">
+      <legend><b>Prescriptions</b></legend>
+      <p></p>
+
+      
+      <?php 
+
+      $medicines = $infoRes['medicines'];
+      $medi = explode(',', $medicines);
+
+      foreach($medi as $med){
+       
+      $color1 = rand(10, 99);
+      $color2 = rand(10, 99);
+      $color3 = rand(10, 99);
+      $color = "rgba(".$color1.",".$color2.",".$color3.",0.9)";
+      echo '
+      <div class="illness" style="background:  -webkit-linear-gradient('.$color.','.$color.'), url(../images/medicine.jpeg);background-repeat: round;"> <a style="text-decoration:none; color:white; text-align:right" href="deletestuff.php?type=med&name='.$med.'"><i class="fas fa-trash"></i></a>
+   <h1>'.$med.'</h1>
+    </div> 
+        
+        ';
+      }
+      
+      
+    ?>
+    <hr>
+    <a href="addhealth.php?type=md"><button class="add">
+      Add +
+    </button></a>
+    </fieldset>
+
 <p style="color:#083C61; text-align:left; margin-top:100px;">Reminders</p>
 
      <?php

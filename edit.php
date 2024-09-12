@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 0);
 session_start();
 if(!isset($_SESSION['user'])){
     header('location:signin.php');
@@ -50,6 +51,13 @@ if(!isset($_SESSION['user'])){
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
     
     <title>Edit | Digipharm</title>
+
+    <script>
+    // Check if the form has been submitted
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 </head>
 <body>
 <nav>
