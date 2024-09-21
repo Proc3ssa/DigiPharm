@@ -125,15 +125,16 @@ if(isset($_POST['add'])){
   $dossage2 = $dossage.$metric;
   $date = $_POST['date'];
   $time = $_POST['time'];
+  $time2 = $_POST['time2'];
   
   $id = rand(10000, 90000);
   $sendAtTimestamp = strtotime("$date $time UTC");
-  $SMS = "You have set a reminder for medicince intake. Medicine: $name. Dossage: $dossage2. Day : $date. Time: $time. You will be reminded again on $date";
+  $SMS = "You have set a reminder for medicince intake. Medicine: $name. Dossage: $dossage2. Day : $date. Time: $time - $time2. You will be reminded again on $date";
 
   $Ssms = "You set a reminder for medicince intake at this time.  Medicine: $name. Dossage: $dossage2. Get well soon. DigiPharm";
 
 
-  $INSERT = "INSERT INTO reminders values($id, '$name', '$dossage', '$date', '$time', $user, '$notificationtype', 'Pending', '$metric')";
+  $INSERT = "INSERT INTO reminders values($id, '$name', '$dossage', '$date', '$time', '$time2', $user, '$notificationtype', 'Pending', '$metric')";
 
   if(mysqli_query($connection, $INSERT)){
       $message = "<p style='color:green'>New reminder has been added.</p>";
@@ -248,10 +249,11 @@ if(isset($_POST['add'])){
               <input type="radio" id="'.$drug.'" name="medicine"  value="'.$drug.'" required> <label for="'.$drug.'">'.$drug.'</label>';
             }
             ?>
-
           <p></p>
-
-        <input type="number" name="dossage" placeholder="dossage" required id="don">
+          <p></p>
+          <p></p>
+          <label for="don">Dossage</label><span style="color:red">*</span><br>
+        <input type="number" name="dossage" placeholder="Enter dossage" required id="don">
          <select required id="dossage" name="metric">
             <option value="mg">mg</option>
             <option value="g">g</option>
@@ -261,8 +263,18 @@ if(isset($_POST['add'])){
             <option value="mol">mol</option>
             <option value="mmol">mmol</option>
         </select>
+            
+        <p></p>
+        <label for="date">Date</label><span style="color:red">*</span>
         <input type="date" name="date" placeholder="Date" required id="date" min="<?php echo date('Y-m-d')?>">
+        
+        <p></p>
+        <label for="medicine">Time</label><span style="color:red">*</span><p></p>
+        <label for="medicine">From</label>
         <input type="time" name="time" placeholder="time" required>
+        <p></p>
+        <label for="medicine">To</label>
+        <input type="time" name="time2" placeholder="time" required>
 
       
        
