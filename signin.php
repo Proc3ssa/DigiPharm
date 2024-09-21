@@ -19,7 +19,7 @@ if(isset($_POST['login'])){
         if($fetch['status'] == "verified"){
         session_start();
         $_SESSION['user'] = $fetch['id'];
-        header("location:dashboard.php");
+        header("location:dashboardn.php");
         }
         else{
             $message = "<p style='color:blue'>Your Account has not been verified. Check your SMS for a verification code.</p>";
