@@ -223,7 +223,7 @@ if(isset($_POST['add'])){
       </label>
       <ul>
         <li>
-          <a href="dashboard.php" class="active">Home</a>
+          <a href="dashboardn.php" class="active">Home</a>
         </li>
 
 

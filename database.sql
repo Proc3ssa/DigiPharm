@@ -28,6 +28,7 @@ CREATE TABLE `reminders` (
   `dossage` varchar(6) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `time` time DEFAULT NULL,
+  `time2` time DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
   `notificationType` varchar(6) NOT NULL,
   `status` varchar(20) NOT NULL,
@@ -42,8 +43,12 @@ CREATE TABLE `reminders` (
 LOCK TABLES `reminders` WRITE;
 /*!40000 ALTER TABLE `reminders` DISABLE KEYS */;
 INSERT INTO `reminders` VALUES
-(69134,'panadol','221','2024-09-12','12:00:00',757925,'','Pending','g'),
-(84726,'panadol','267','2024-09-12','06:33:00',757925,'','Pending','mg');
+(80682,'Insuline','234','2024-09-12','15:23:00',NULL,148872,'','Pending','mg'),
+(69134,'panadol','221','2024-09-12','12:00:00',NULL,757925,'','Pending','g'),
+(84726,'panadol','267','2024-09-12','06:33:00',NULL,757925,'','Pending','mg'),
+(72159,'Gas','54','2024-09-26','17:57:00','16:57:00',125058,'','Pending','ml'),
+(82004,'panadol','34','2024-09-26','14:23:00','18:19:00',125058,'','Pending','mg'),
+(42276,' Amoxicillin','31','2024-10-24','09:52:00','10:53:00',125058,'','Pending','mg');
 /*!40000 ALTER TABLE `reminders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,7 +80,8 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(757925,'Bridget',26,'cshfaisalhalid@gmail.com','0553226020','11111111','verified','Headache','panadol, Insuline,Garlic mixture');
+(125058,'Test user',23,'pros3sa@gmail.com','05499363','1111111','verified','Money, Health','panadol, Amoxicillin,Gas'),
+(148872,'test1',21,'cshfaisalhalid@gmail.com','0553226020','11111','verified','Tall,Prostate cancer,Kidney stones,asthma','Insuline');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -88,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-12  7:06:41
+-- Dump completed on 2024-09-24  7:24:24

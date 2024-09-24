@@ -1,7 +1,9 @@
 <?php
 session_start();
+$month = date('m');
+$day = date('d');
 if(isset($_SESSION['user'])){
-    header('location:dashboard.php');
+    header('location:dashboardn.php?month=$month&day=$day"');
 }
 
 $message = "";
@@ -19,7 +21,9 @@ if(isset($_POST['login'])){
         if($fetch['status'] == "verified"){
         session_start();
         $_SESSION['user'] = $fetch['id'];
-        header("location:dashboardn.php");
+        $month = date('m');
+        $day = date('d');
+        header("location:dashboardn.php?month=$month&day=$day");
         }
         else{
             $message = "<p style='color:blue'>Your Account has not been verified. Check your SMS for a verification code.</p>";

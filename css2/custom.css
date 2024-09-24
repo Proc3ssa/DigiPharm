@@ -63,6 +63,15 @@ body
     color: rgba(0,0,0,0.6);
 }
 
+#mra_months_bar ul li button{
+    border:none;
+    color:black;
+    box-shadow: 0 3px 6px rgb(189, 187, 187);
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+}
+
 #mra_months_bar:before
 {
     content: '';
@@ -463,6 +472,41 @@ body
     background-color: rgba(9,16,255, 1);
     color: #fff;
     box-shadow: 10px 10px 15px -5px rgba(9,16,255, 0.3);
+}
+
+.months button{
+
+    border:none;
+    
+    
+    width: 150px;
+    height: 30px;
+}
+
+#slider .daybtn{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    background: rgb(36, 44, 250);
+    color:white;
+    width:150px
+}
+#slider button{
+    border: none;
+    
+    width: 90px;
+    border-radius: 5px;
+}
+
+
+
+
+
+.months .active{
+    background: rgb(36, 44, 250);
+    border-radius: 6px;
+    color: rgb(252, 252, 253);
 }
 
 

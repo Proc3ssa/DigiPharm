@@ -59,39 +59,12 @@ session_start();
     <title>Dashboard | Digipharm</title>
 </head>
 <body>
-<nav>
-
-<a style="margin-left:10px; text-align:center" class='profile' href="profile.php" id="logo"><img src="./images/user.png" /> <p><?php echo $infoRes['name']; ?></p></a>
-
-      <!-- <a href="#home" id="logo"><img src="./images/logo-trans.png"></a> -->
-      <input type="checkbox" id="hamburger" />
-      <label for="hamburger">
-        <!-- <i class="fa-solid fa-bars"></i> -->
-      </label>
-      <ul>
-        <li>
-          <a href="dashboard.php" class="active">Home</a>
-        </li>
-
-        <li>
-          <a href="add.php" class="active">New reminder</a>
-        </li>
-
-        <li>
-          <a href="logout.php" class="active">logout</a>
-        </li>
-
-       
-        
-        
-      </ul>
-    </nav>
-  
+<!--  -->
     
 
     <div class="signup">
 
-    <fieldset class="fieldset">
+    <fieldset class="fieldset" id="health">
       <legend><b>My Health</b></legend>
       <p>Health Issues</p>
 
@@ -124,7 +97,7 @@ session_start();
     </fieldset>
 
 
-    <fieldset class="fieldsets">
+    <fieldset class="fieldsets" id="pres">
       <legend><b>Prescriptions</b></legend>
       <p></p>
 
@@ -156,47 +129,8 @@ session_start();
     </button></a>
     </fieldset>
 
-<p style="color:white; text-align:left; margin-top:100px;">Reminders</p>
 
-     <?php
-
-     while($res = mysqli_fetch_assoc($query)){
-
-      $dateTime = $res['date'].' '.$res['time'];
-      $medicine = $res['medicine'];
-      
-        $color1 = rand(10, 99);
-        $color2 = rand(10, 99);
-        $color3 = rand(10, 99);
-        $color = "rgba(".$color1.",".$color2.",".$color3.",0.9)";
-        echo '
-
-    <div class="reminder" style="background-color:'.$color.';">
-        <div class="top">
-            <b id="medname">'.(strlen($medicine) <13 ? $medicine : substr($medicine, 0, 12) . '...').'</b> <b id="dossage">Dossage:<span class="sd">'.$res['dossage'].$res['metric'].'</span></b>
-        </div>
-        <hr/>
-
-        <div class="botom">
-            <p><b>Date: <span class="sdd">'.$res['date'].'</span> <span class="status">'.checkFutureDate($dateTime)['status'].'<span></b></p>
-
-            <p style="margin-top:-17px"><b>Time: <span class="st">'.$res['time'].'</span> 
-            <span class="cancel"><a href="cancel.php?id='.$res['reminder_id'].'">'.checkFutureDate($dateTime)['cancelStatus'].'</a></span> 
-            
-            <span class="edit"><a href="edit.php?id='.$res['reminder_id'].'">'.checkFutureDate($dateTime)['editStatus'].'</a></span></b></p>
-
-           
-        </div>
-
-    </div>
-
-    ';
-     }
-
-     if($query -> num_rows == 0){
-        echo "You have no reminders";
-     }
-    ?>
+    
 
     
 

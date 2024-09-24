@@ -25,10 +25,11 @@ if(!isset($_SESSION['user'])){
   $dossage2 = $dossage.$metric;
   $date = $_POST['date'];
   $time = $_POST['time'];
+  $time2 = $_POST['time2'];
   $notificationtype = $_POST['notificationtype'];
 
 
-  $UPDATE = "UPDATE reminders set medicine = '$name', dossage='$dossage', date='$date', time='$time', notificationType='$notificationtype', metric='$metric' where reminder_id=$id";
+  $UPDATE = "UPDATE reminders set medicine = '$name', dossage='$dossage', date='$date', time='$time', time2='$time2', notificationType='$notificationtype', metric='$metric' where reminder_id=$id";
 
   
 
@@ -116,7 +117,7 @@ if(!isset($_SESSION['user'])){
         <input type="date" name="date" placeholder="Date" required value="<?php echo $res['date'] ?>">
         <p>Time</p>
         <input type="time" name="time" placeholder="time" required value="<?php echo $res['time'] ?>">
-
+        <input type="time" name="time2" placeholder="time2" required value="<?php echo $res['time2'] ?>">
         <!-- <div class="notified">
             <p>Get notified by</p>
             <input type="radio" id="email" name="notificationtype" requied <?php echo ($res['notificationType'] ==  "email") ? "checked" : ""  ?> value="email"> <label for="email">Email</label>
