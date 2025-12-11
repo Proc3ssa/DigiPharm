@@ -5,7 +5,7 @@ $message = "";
 if(isset($_POST['create'])){
     include './connection.php';
     $name = $_POST['name'];
-    
+    $country = $_POST['country'];
     $email = $_POST['email'];
     $age = $_POST['age'];
     $password = $_POST['password'];
